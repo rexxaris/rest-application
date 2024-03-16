@@ -22,11 +22,12 @@ repositories {
 
 dependencies {
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${project.springBootVersion}"
+	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation "org.springframework.boot:spring-boot-starter-web:${project.springBootVersion}"
+	developmentOnly "org.springframework.boot:spring-boot-devtools:${project.springBootVersion}"
 
 	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
