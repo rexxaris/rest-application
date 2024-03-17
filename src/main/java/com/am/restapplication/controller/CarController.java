@@ -8,25 +8,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.am.restapplication.config.Constants.ServiceMapping.*;
+
 @Slf4j
 @RestController
-@RequestMapping("/car")
 @RequiredArgsConstructor
+@RequestMapping(CARS_BASE_MAPPING)
 public class CarController {
 
     private final CarService carService;
 
-    @GetMapping("/getAllCars")
+    @GetMapping(CARS_GET_ALL_MAPPING)
     public List<Car> getAllCars() {
         return carService.getCars();
     }
 
-    @PutMapping("/addCar")
+    @PutMapping(CARS_ADD_CAR_MAPPING)
     public String addCar(@RequestBody Car car) {
         return carService.addCar(car);
     }
 
-    @DeleteMapping("/removeCar/{brand}")
+    @DeleteMapping(CARS_REMOVE_CAR_BY_BRAND_MAPPING)
     public String removeCar(@PathVariable String brand) {
         return carService.removeCar(brand);
     }
