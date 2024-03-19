@@ -23,7 +23,7 @@ public class CarController {
         return carService.getCars();
     }
 
-    @PutMapping(CARS_ADD_CAR_MAPPING)
+    @PostMapping(CARS_ADD_CAR_MAPPING)
     public String addCar(@RequestBody Car car) {
         return carService.addCar(car);
     }

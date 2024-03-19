@@ -29,6 +29,7 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'junit:junit-dep:4.11'
 }
 
 tasks.named('test') {
