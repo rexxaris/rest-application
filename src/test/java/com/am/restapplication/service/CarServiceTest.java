@@ -53,7 +53,7 @@ class CarServiceTest {
     }
 
     @Test
-    void removeCar() {
+    void removeCar_shouldRemoveOneOfTheExistingCar() {
         Random random = new Random();
         List<Car> carList = carService.getCars();
         Car randomCar = carList.get(random.nextInt(carList.size()));
@@ -61,6 +61,15 @@ class CarServiceTest {
         carService.removeCar(randomCar.getBrand());
 
         assertTrue(carService.getCars().stream().noneMatch(car -> car.getBrand().equals(randomCar.getBrand())));
+    }
+
+    @Test
+    void removeCar_failToRemoveNotExistingCar() {
+        Car carWithUnknownBrand = new Car("unknown-brand", 0);
+
+        String response = carService.removeCar(carWithUnknownBrand.getBrand());
+
+        assertEquals(String.format("car brand %s remove operation: %s", carWithUnknownBrand.getBrand(), false), response);
     }
 
     @Test
