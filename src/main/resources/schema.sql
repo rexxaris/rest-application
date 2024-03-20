@@ -1,0 +1,7 @@
+    DROP TABLE IF EXISTS MOTORCYCLE;
+    CREATE TABLE MOTORCYCLE (
+    id INT AUTO_INCREMENT  PRIMARY KEY,
+    licensePlate VARCHAR(50),
+    brand VARCHAR(50),
+    maxVelocity REAL
+    );
