@@ -2,6 +2,7 @@ package com.am.restapplication.service;
 
 import com.am.restapplication.model.Car;
 import com.am.restapplication.util.CarGenerator;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,13 @@ class CarServiceTest {
     CarGenerator carGenerator;
 
     @Test
+    @Order(1)
+    void getCars() {
+        List<Car> carList = carService.getCars();
+        assertEquals(10, carList.size());
+    }
+
+    @Test
     void addCar_shouldAddNewCar() {
         Car carNotOnList = createCarNotOnList();
 
@@ -29,6 +37,8 @@ class CarServiceTest {
         assertTrue(carService.getCars().stream().anyMatch(car -> car.getBrand().equals(carNotOnList.getBrand())));
         assertEquals(11,carService.getCars().size());
         assertTrue(response.contains("added to list"));
+
+        carService.removeCar(carNotOnList.getBrand()); // clear-up after test
     }
 
     @Test
@@ -61,6 +71,8 @@ class CarServiceTest {
         carService.removeCar(randomCar.getBrand());
 
         assertTrue(carService.getCars().stream().noneMatch(car -> car.getBrand().equals(randomCar.getBrand())));
+
+        carService.addCar(randomCar); // add again after test passed
     }
 
     @Test
@@ -70,12 +82,6 @@ class CarServiceTest {
         String response = carService.removeCar(carWithUnknownBrand.getBrand());
 
         assertEquals(String.format("car brand %s remove operation: %s", carWithUnknownBrand.getBrand(), false), response);
-    }
-
-    @Test
-    void getCars() {
-        List<Car> carList = carService.getCars();
-        assertEquals(10, carList.size());
     }
 
     Car createCarNotOnList() {
