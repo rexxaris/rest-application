@@ -25,12 +25,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     implementation "org.springframework.boot:spring-boot-starter-web:${project.springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${project.springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-mongodb:${project.springBootVersion}"
     developmentOnly "org.springframework.boot:spring-boot-devtools:${project.springBootVersion}"
 
-    implementation 'com.h2database:h2:2.2.224'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.12.2'
     testImplementation 'junit:junit:4.13.2'
 }
 
